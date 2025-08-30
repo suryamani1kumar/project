@@ -1,6 +1,7 @@
 import { useState, createContext, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css'
 import Login from './page/Login'
 import Header from './component/Header/Header';

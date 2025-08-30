@@ -1,0 +1,61 @@
+export const topicsData = [
+  {
+    category: "Algorithms",
+    status: "Pending",
+    subTopics: [
+      {
+        name: "Sorting Algorithms",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+      {
+        name: "Searching Algorithms",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+      {
+        name: "Dynamic Programming",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+      {
+        name: "Greedy Algorithms",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+      {
+        name: "Divide and Conquer",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+      {
+        name: "Backtracking",
+        leetCodeLink: "/topics",
+        youtubeLink: "/topics",
+        articleLink: "/topics",
+        level: "EASY",
+        status: false,
+      },
+    ],
+  },
+  {
+    category: "Data Structures",
+    status: "Pending",
+    subTopics: [],
+  },
+];
