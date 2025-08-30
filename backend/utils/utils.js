@@ -14,4 +14,3 @@ export const generateTokens = (payload, time, refreshTime) => {
   return { accessToken, refreshToken };
 };
 
-

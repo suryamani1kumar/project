@@ -5,6 +5,7 @@ import cors from "cors";
 import userLogin from "./routes/login.js";
 import token from "./routes/verifyToken.js";
 import logout from "./routes/logout.js"
+import DsaList from "./routes/DsaData.js"
 
 // Load env variables
 dotenv.config();
@@ -24,7 +25,7 @@ app.use(
 
 // Routes
 
-app.use("/api", [userLogin, token, logout]);
+app.use("/api", [userLogin, token, logout,DsaList]);
 
 // Start server
 app.listen(PORT, () => {
