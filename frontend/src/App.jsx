@@ -1,31 +1,57 @@
-import { useState } from 'react'
+import { useState, createContext, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Login from './page/Login'
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Profile from './page/Profile';
+import Progress from './page/Progress';
+import Topics from './page/Topics';
+import axios from 'axios';
+
+export const AuthContext = createContext(false)
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loggin, setLoggin] = useState(false)
+
+  const checkToken = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/verify`, {
+        withCredentials: true, // ✅ send cookies
+      });
+      console.log("res",res.data)
+      if (res.status===200) {
+        setLoggin(true);
+      } else {
+        setLoggin(false);
+      }
+    } catch (err) {
+      setLoggin(false);
+    }
+  };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <>
+      <AuthContext.Provider value={{ loggin, setLoggin }}>
+        <BrowserRouter>
+          {loggin && <Header />}
 
-      <BrowserRouter>
-        {/* <Header /> */}
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/topics' element={<Topics />} />
+            <Route path='/progress' element={<Progress />} />
 
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<Login />} />
-          <Route path='/topics' element={<Login />} />
-          <Route path='/progress' element={<Login />} />
+          </Routes>
+          {loggin && <Footer />}
 
-        </Routes>
-        {/* <Footer /> */}
-
-      </BrowserRouter>
-
+        </BrowserRouter>
+      </AuthContext.Provider>
 
     </>
   )

@@ -1,5 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../App";
+import { useContext } from "react";
+import axios from "axios";
+
 const Header = () => {
+    const { setLoggin } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await axios.get(
+                `${import.meta.env.VITE_BASE_URL}/logout`,
+                { withCredentials: true }
+            );
+            setLoggin(false); 
+            navigate("/login"); 
+        } catch (err) {
+            console.error("Logout failed:", err);
+        }
+    };
+
     return (
         <div className="bg-primary text-white">
             <div className="container p-3 d-flex align-items-center justify-content-between">
@@ -10,7 +30,7 @@ const Header = () => {
                     <li className="cursor-pointer"><Link to="/profile" className="text-white text-decoration-none">Profile</Link></li>
                     <li className="cursor-pointer"><Link to="/topics" className="text-white text-decoration-none">Topics</Link></li>
                     <li className="cursor-pointer"><Link to="/progress" className="text-white text-decoration-none">Progress</Link></li>
-                    <li className="cursor-pointer p-2 border border-white rounded">Logout</li>
+                    <li className="cursor-pointer p-2 border border-white rounded" onClick={handleLogout}>Logout</li>
 
                 </ul>
 

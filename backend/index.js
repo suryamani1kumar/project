@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import userLogin from "./routes/login.js";
+import token from "./routes/verifyToken.js";
+import logout from "./routes/logout.js"
 
 // Load env variables
 dotenv.config();
@@ -22,7 +24,7 @@ app.use(
 
 // Routes
 
-app.use("/api", userLogin);
+app.use("/api", [userLogin, token, logout]);
 
 // Start server
 app.listen(PORT, () => {
