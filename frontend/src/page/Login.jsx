@@ -8,7 +8,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setLoggin } = useContext(AuthContext)
+  const { setLoggin,setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState({});
 
@@ -48,10 +48,10 @@ const Login = () => {
       const res = await axios.post(`${BASE_URL}/login`, formData, {
         withCredentials: true,
       });
-
+      console.log("res.data", res.data);
       if (res.status === 200) {
         setUser(res.data);
-        setLoggin(true)
+        setLoggin(true);
         navigate("/profile");
       }
     } catch (err) {
@@ -83,8 +83,9 @@ const Login = () => {
             </label>
             <input
               type="email"
-              className={`form-control ${errorMessage.email ? "is-invalid" : ""
-                }`}
+              className={`form-control ${
+                errorMessage.email ? "is-invalid" : ""
+              }`}
               id="email"
               value={formData.email}
               name="email"
@@ -102,8 +103,9 @@ const Login = () => {
             </label>
             <input
               type="password"
-              className={`form-control ${errorMessage.password ? "is-invalid" : ""
-                }`}
+              className={`form-control ${
+                errorMessage.password ? "is-invalid" : ""
+              }`}
               id="password"
               value={formData.password}
               name="password"
