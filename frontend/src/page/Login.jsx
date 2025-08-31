@@ -50,6 +50,7 @@ const Login = () => {
       });
 
       if (res.status === 200) {
+        setUser(res.data);
         setLoggin(true)
         navigate("/profile");
       }
